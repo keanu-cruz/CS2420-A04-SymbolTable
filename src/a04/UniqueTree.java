@@ -76,7 +76,20 @@ public class UniqueTree {
      * Doubles the value of all even numbers in the tree.
      */
     public void doubleEvenNumbers() {
-        // TODO
+        doubleEvenNumbers(root);
+    }
+    
+    private void doubleEvenNumbers(Node node) {
+    	if (node == null) {
+    		return;
+    	}
+    	
+    	doubleEvenNumbers(node.left);
+    	doubleEvenNumbers(node.right);
+    	
+    	if (node.val % 2 == 0) {
+    		node.val *= 2;
+    	}
     }
 
     /**
@@ -86,7 +99,24 @@ public class UniqueTree {
      * @return the sum of all right children
      */
     public int sumOfRightChildren() {
-        return 0; // TODO
+    	return sumOfRightChildren(root);
+    }
+    
+    private int sumOfRightChildren(Node node) {
+    	if (node == null) {
+    		return 0;
+    	}
+    	
+    	int sum = 0;
+    	
+    	sum += sumOfRightChildren(node.left);
+    	sum += sumOfRightChildren(node.right);
+    	
+    	if (node.right != null) {
+    		sum += node.right.val;
+    	}
+    	
+    	return sum;
     }
 
     /**
@@ -95,7 +125,25 @@ public class UniqueTree {
      * @return the count of nodes with all children as leaves
      */
     public int countLeafParents() {
-    	 return 0; // TODO
+    	return countLeafParents(root);
+    }
+    
+    private int countLeafParents(Node node) {
+    	if (node == null) {
+    		return 0;
+    	}
+    	
+    	int count = 0;
+    	
+    	count += countLeafParents(node.left);
+    	count += countLeafParents(node.right);
+    	
+    	if ((node.left != null && node.left.left == null && node.left.right == null) || 
+    			(node.right != null && node.right.left == null && node.right.right == null)) {
+    		count++;
+    	}
+    	
+    	return count;
     }
 
     /**
@@ -104,8 +152,32 @@ public class UniqueTree {
      * @return the average of all odd numbers, or 0 if there are no odd numbers
      */
     public double averageOfOddNumbers() {
-        return 0.0; // TODO
+        int[] result = averageOfOddNumbers(root);
+        if (result[1] == 0) {
+        	return 0.0;
+        }
+        return (double) result[0] / (double) result[1];
     }
+    
+    private int[] averageOfOddNumbers(Node node) {
+    	if (node == null) {
+    		return new int[] {0,0};
+    	}
+    	
+    	int[] left = averageOfOddNumbers(node.left);
+    	int[] right = averageOfOddNumbers(node.right);
+    	
+    	int sum = left[0] + right[0];
+    	int count = left[1] + right[1];	
+    	
+    	if (node.val % 2 != 0) {
+    		sum += node.val;
+    		count++;
+    	}
+    	
+    	return new int[] {sum, count};
+    }
+    
 
     /**
      * Finds the difference between the largest and smallest elements in the tree.
@@ -113,8 +185,25 @@ public class UniqueTree {
      * @return the difference between the largest and smallest values
      */
     public int greatestDifference() {
-        return 0; // TODO
+    	if (root == null) {
+    		return 0;
+    	}
+    	int[] result = greatestDifference(root);
+        return result[0] - result[1];
     }
-
+    
+    private int[] greatestDifference(Node node) {
+    	if (node == null) {
+    		return new int[] {Integer.MIN_VALUE, Integer.MAX_VALUE};
+    	}
+    	
+    	int[] left = greatestDifference(node.left);
+    	int[] right = greatestDifference(node.right);
+    	
+    	int max = Math.max(node.val, Math.max(left[0], right[0]));
+    	int min = Math.min(node.val, Math.min(left[1], right[1]));
+    	
+    	return new int[] {max, min};
+    }
 }
 
