@@ -58,5 +58,13 @@ class UniqueTreeDemo {
         // Include a variety of trees (e.g., edge cases, different shapes, only left- or right-leaning trees, 
         // negative values, only odd/even values, single-node trees). 
         // For each test, determine the expected result and verify that the output matches your expectations.
+        
+        List<Integer[]> treeData2 = List.of(
+        		new Integer[]{7, 1, 2},
+                new Integer[]{25, null, null});
+        UniqueTree tree2 = new UniqueTree(treeData2);
+        System.out.println(tree2.greatestDifference());
+        
+        		
     }
 }
