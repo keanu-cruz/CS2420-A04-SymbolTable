@@ -207,3 +207,13 @@ public class UniqueTree {
     }
 }
 
+/**
+ * A. Yes, we worked in tandem over video call working each method and test together.
+ * B. About 5 hours total work time over video call.
+ * C. Yes, we worked together figuring out the structure to each method.
+ * D. We tried switching roles, but do to technical issues we used one computer. Both contributed to overall code.
+ * E. Both partners agree that everything was positive and respectful.
+ * F. Figuring out the base-case for greatestDifference.
+ * G. Pebble Distribution: 50/50.
+ */
+
